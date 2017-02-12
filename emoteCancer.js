@@ -45,9 +45,9 @@ outputClicked=()=>{
     try {
         var successful = document.execCommand('copy');
         var msg = successful ? 'successful' : 'unsuccessful';
-        alert('Copying text command was ' + msg);
+        showSnackBarWithMessage('Copying text command was ' + msg);
     } catch (err) {
-        alert('Oops, unable to copy');
+        showSnackBarWithMessage("Error copying text")
     }
 };
 
@@ -67,10 +67,17 @@ mappingChanged=()=>{
         }
         inputChanged();
     } catch (e) {
-        console.log("Error parsing json")
+        showSnackBarWithMessage("Error parsing JSON")
     }
 }
 writeMappingToTextArea=()=>document.getElementById("mapping").value = JSON.stringify(mappings);
+showSnackBarWithMessage=(message)=>{
+    var x = document.getElementById("snackbar")
+    x.innerHTML = message;
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     writeMappingToTextArea();
     setInputMappings();

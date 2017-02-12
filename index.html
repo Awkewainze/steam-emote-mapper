@@ -7,6 +7,53 @@
         <meta http-equiv="Expires" content="0"/>
         <title>Steam Chat Cancer</title>
         <script src="emoteCancer.js" charset="utf-8"></script>
+        <style>
+            #snackbar {
+                visibility: hidden; /* Hidden by default. Visible on click */
+                min-width: 250px; /* Set a default minimum width */
+                margin-left: -125px; /* Divide value of min-width by 2 */
+                background-color: #333; /* Black background color */
+                color: #fff; /* White text color */
+                text-align: center; /* Centered text */
+                border-radius: 2px; /* Rounded borders */
+                padding: 16px; /* Padding */
+                position: fixed; /* Sit on top of the screen */
+                z-index: 1; /* Add a z-index if needed */
+                left: 50%; /* Center the snackbar */
+                bottom: 30px; /* 30px from the bottom */
+            }
+
+            /* Show the snackbar when clicking on a button (class added with JavaScript) */
+            #snackbar.show {
+                visibility: visible; /* Show the snackbar */
+
+                /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+                However, delay the fade out process for 2.5 seconds */
+                -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+                animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            }
+
+            /* Animations to fade the snackbar in and out */
+            @-webkit-keyframes fadein {
+                from {bottom: 0; opacity: 0;}
+                to {bottom: 30px; opacity: 1;}
+            }
+
+            @keyframes fadein {
+                from {bottom: 0; opacity: 0;}
+                to {bottom: 30px; opacity: 1;}
+            }
+
+            @-webkit-keyframes fadeout {
+                from {bottom: 30px; opacity: 1;}
+                to {bottom: 0; opacity: 0;}
+            }
+
+            @keyframes fadeout {
+                from {bottom: 30px; opacity: 1;}
+                to {bottom: 0; opacity: 0;}
+            }
+        </style>
     </head>
     <body>
         <label for="input">Input</label>
@@ -16,6 +63,8 @@
         <label for="output">Output</label>
         <br>
         <textarea id="output" name="output" rows="8" cols="120" readonly onclick="outputClicked()"></textarea>
+        <br>
+        <p>Want to find some characters for yourself? Check out <a href="http://steamtradingcards.wikia.com/wiki/Emoticons:Letters">http://steamtradingcards.wikia.com/wiki/Emoticons:Letters</a></p>
         <table>
             <thead>
                 <th>Character</th>
@@ -132,5 +181,10 @@
         <label for="mapping">Mapping JSON</label><br>
         <textarea id="mapping" name="mapping" rows="6" cols="120" onkeyup="mappingChanged()"></textarea>
         <p>You can paste this back into this textarea in the future to save your current icons</p>
+        <!-- Use a button to open the snackbar -->
+        <button onclick="showSnackBarWithMessage('test')">Show Snackbar</button>
+        <!-- The actual snackbar -->
+        <div id="snackbar"></div>
     </body>
+
 </html>
