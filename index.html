@@ -180,10 +180,8 @@
         <br>
         <label for="mapping">Mapping JSON</label><br>
         <textarea id="mapping" name="mapping" rows="6" cols="120" onkeyup="mappingChanged()"></textarea>
-        <p>You can paste this back into this textarea in the future to save your current icons</p>
-        <!-- Use a button to open the snackbar -->
-        <button onclick="showSnackBarWithMessage('test')">Show Snackbar</button>
-        <!-- The actual snackbar -->
+        <p>You can paste this back into this textarea in the future to save your current icons or press the button below to save current settings to a cookie, meaning when you come back, the current emotes will be saved. If you want to reset, clear your cookies in your browser.</p>
+        <button type="button" name="save-cookie" onclick="saveCookie()">Save mappings to cookie</button>
         <div id="snackbar"></div>
     </body>
 

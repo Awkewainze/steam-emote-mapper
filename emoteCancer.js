@@ -77,8 +77,12 @@ showSnackBarWithMessage=(message)=>{
     x.className = "show";
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
+saveCookie=()=>{
+    document.cookie = JSON.stringify(mappings);
+}
 
 document.addEventListener('DOMContentLoaded', function() {
+    mappings = document.cookie || mappings;
     writeMappingToTextArea();
     setInputMappings();
 });
