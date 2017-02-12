@@ -82,7 +82,8 @@ saveCookie=()=>{
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    mappings = document.cookie === "" ? mappings : JSON.parse(document.cookie);
+    if(document.cookie !== "")
+        mappings = JSON.parse(document.cookie);
     writeMappingToTextArea();
     setInputMappings();
 });
