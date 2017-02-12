@@ -80,6 +80,10 @@ showSnackBarWithMessage=(message)=>{
 saveCookie=()=>{
     document.cookie = JSON.stringify(mappings);
 }
+deleteCookie=()=>{
+    document.cookie = "";
+    history.go(0);
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     if(document.cookie !== "")
