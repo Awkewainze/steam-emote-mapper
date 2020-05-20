@@ -6,7 +6,7 @@
         <meta http-equiv="Pragma" content="no-cache"/>
         <meta http-equiv="Expires" content="0"/>
         <title>Steam Chat Cancer</title>
-        <script src="emoteCancer.js?v=1" charset="utf-8"></script>
+        <script src="emote.js?v=1" charset="utf-8"></script>
         <style>
             #snackbar {
                 visibility: hidden; /* Hidden by default. Visible on click */
@@ -56,6 +56,13 @@
             textarea {
                resize: none;
             }
+            #preview {
+                font-size: 14px;
+                font-family: "Motiva Sans", Arial, Helvetica, sans-serif;
+                height: 20em;
+                color: #aaa;
+                background-color: #1B1C20;
+            }
         </style>
     </head>
     <body>
@@ -66,6 +73,10 @@
         <label for="output">Output</label>
         <br>
         <textarea id="output" name="output" rows="8" cols="120" readonly onclick="outputClicked()"></textarea>
+        <br>
+        <label for="preview">Preview</label>
+        <br>
+        <div id="preview" name="preview"></div>
         <br>
         <p>Want to find some characters for yourself? Check out <a href="http://steamtradingcards.wikia.com/wiki/Emoticons:Letters">http://steamtradingcards.wikia.com/wiki/Emoticons:Letters</a></p>
         <table>

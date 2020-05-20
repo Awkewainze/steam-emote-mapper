@@ -1,6 +1,6 @@
 var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
-mappings = {
+var mappings = {
     "a": ":abc:",
     "b": ":csgob:",
     "c": ":carbon:",
@@ -29,8 +29,20 @@ mappings = {
     "z": ":NZA2_Zed:"
 }
 
-emoteMap=(str)=>str.toLowerCase().split("").map((x)=>mappings[x]!==undefined?mappings[x]:x).join("");
-inputChanged=()=>{
+function emoteMap(str) {
+    return str
+        .toLowerCase()
+        .split("")
+        .map(x => {
+            if (mappings[x]) {
+                return mappings[x];
+            }
+            return x;
+        })
+        .join("");
+}
+
+function inputChanged() {
     var input = document.getElementById("input");
     var output = document.getElementById("output");
     for (var letter in letters) {
@@ -38,9 +50,10 @@ inputChanged=()=>{
     }
     output.value = emoteMap(input.value);
     writeMappingToTextArea();
+    updatePreviewMessage()
 };
 
-outputClicked=()=>{
+function outputClicked() {
     document.getElementById("output").select();
     try {
         var successful = document.execCommand('copy');
@@ -51,7 +64,7 @@ outputClicked=()=>{
     }
 };
 
-setInputMappings=()=>{
+function setInputMappings() {
     for (var letter in letters) {
         document.getElementById(letters[letter]).value = mappings[letters[letter]] || "";
     }
@@ -83,6 +96,25 @@ saveCookie=()=>{
 deleteCookie=()=>{
     document.cookie = "";
     history.go(0);
+}
+
+function convertMessageToPreviewFormat(str) {
+    let chars = str.toLowerCase().split("");
+    return chars.map(char => {
+        if (!mappings[char])
+            return char;
+        return mappings[char];
+    }).map(emote => {
+        if (!emote.startsWith(":") || !emote.endsWith(":"))
+            return emote
+        const url = `https://steamcommunity-a.akamaihd.net/economy/emoticon/${emote.substring(1, emote.length-1)}`;
+        return `<img src="${url}"></img>`
+    }).join("");
+}
+function updatePreviewMessage() {
+    var input = document.getElementById("input");
+    var output = document.getElementById("preview");
+    output.innerHTML = convertMessageToPreviewFormat(input.value);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
