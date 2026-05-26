@@ -1,5 +1,5 @@
 # steam-emote-mapper
-Using Steam emotes to give your friends cancer
+Using Steam emotes to write a message
 
 ## How use?
 Follow link above, fairly simple input textarea
